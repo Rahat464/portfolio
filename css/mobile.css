@@ -1,0 +1,82 @@
+/* mobile css */
+#mobile_nav {
+    display: none;
+}
+
+/* Fix overflowing navbar */
+@media screen and (max-width: 1205px) {
+    #nav_name {
+        display: none;
+    }
+}
+
+/* Responsive for mobile */
+@media screen and (max-width: 768px) {
+
+    /* Navbar */
+    nav ul li {
+        display: none;
+    }
+
+    #mobile_nav {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    #mobile_nav ul li {
+        list-style: none;
+        padding: 1% 2% 1% 2%;
+        transition: 0.5s ease-in-out;
+    }
+
+    #mobile_nav ul li a {
+        text-decoration: none;
+        color: rgb(164, 157, 145);
+        font-family: 'Work Sans', sans-serif;
+        font-size: 125%;
+        font-weight: bold;
+        text-transform: uppercase;
+    }
+
+    #nav_name {
+        display:flex;
+        justify-content:end;
+    }
+
+    /* Index */
+    #bg_img {
+        display: none;
+    }
+
+    #home, .container {
+        padding: 0% 2% 0% 2%;
+        margin: 0% 0% 0% 0%;
+    }
+
+    /* Education */
+    .item img {
+        float: none;
+        width: 70%;
+        padding-left: 10%;
+    }
+
+    /* experience */
+    #experience img {
+        width: 100%;
+    }
+
+    /* .container {
+        padding: 0% 0% 0% 0%;
+        margin: 1% 1% 1% 1%;        
+    } */
+
+    /* 
+    login.HTML 
+    */
+
+    #login {
+        margin: 1% 1% 1% 1%;
+    }
+        
+}
