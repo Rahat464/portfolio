@@ -51,9 +51,15 @@
             }
 
             else {
-                session_destroy();
+                //session_destroy();
                 echo "<p>You must login to be able to post a blog.</p>";
+
+                //// Debugging
+                echo "<p>Log: User not logged in.</p>";
             }
+
+            //// Debugging
+            echo "<p>Log: Checking if form has been submitted...</p>";
 
             // Check if form has been submitted
             if (isset($_POST['email']) && isset($_POST['password']) && isset($_POST['confirmPassword'])) {
