@@ -14,7 +14,7 @@
     <header>
         <nav>
             <ul>
-                <li><a href="#about">About</a></li>
+                <li><a href="index.php#about">About</a></li>
                 <li><a href="experience.php#education">Education</a></li>
                 <li><a href="experience.php#experience">Experience</a></li>
                 <li id="nav_name"><a href="index.php">
@@ -28,7 +28,7 @@
         <!-- Mobile nav -->
         <div id="mobile_nav">
             <ul>
-                <li><a href="#about">About</a></li>
+                <li><a href="index.php#about">About</a></li>
                 <li><a href="experience.php#education">Education</a></li>
                 <li><a href="experience.php#experience">Experience</a></li>
                 <li><a href="projects.php#projects">Projects</a></li>
