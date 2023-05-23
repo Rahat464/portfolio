@@ -67,6 +67,9 @@
                 $password = stripcslashes($password);
                 $confirmPassword = stripcslashes($confirmPassword);
 
+                // Connect to local MySQL server
+                $db = connectToDatabase();
+
                 $email = mysqli_real_escape_string($db, $email);
                 $password = mysqli_real_escape_string($db, $password);
                 $confirmPassword = mysqli_real_escape_string($db, $confirmPassword);
@@ -75,9 +78,6 @@
                 $email = htmlspecialchars($email);
                 $password = htmlspecialchars($password);
                 $confirmPassword = htmlspecialchars($confirmPassword);
-
-                // Connect to local MySQL server
-                $db = connectToDatabase();
                 
                 // Check if email already exists
                 $result = $db->query(
