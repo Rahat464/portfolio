@@ -48,13 +48,13 @@
                 echo "<p> Hello, " . $_SESSION['email'] . "</p>";
                 echo '<div id="login_buttons">';
                 echo "<a class='user_option' href='login.php'>Post a Blog</a>";
-                echo '<a class="user_option" href="logout.php">Logout</a>';
+                echo '<a class="user_option" href="php/logout.php">Logout</a>';
                 echo '</div>';
             }
             else {
                 echo '<div id="login_buttons">';
-                echo "<a class='user_option' href='register.php'  >Register</a>";
-                echo "<a class='user_option' href='login.php'  >Login</a>";
+                echo "<a class='user_option' href='register.php'>Register</a>";
+                echo "<a class='user_option' href='login.php'>Login</a>";
             }
 
             echo '</div>';
@@ -62,9 +62,14 @@
         <h2>Blog</h2>
         <!-- Blog posts -->
         <?php
-            $db = new mysqli('localhost', 'root', '', 'ecs417');
+            require_once 'php/database.php';
+
+            $db = connectToDatabase();
             $result = $db->query("SELECT * FROM blog");
             $rows = mysqli_fetch_all($result, MYSQLI_ASSOC);
+
+            // Close connection
+            $db->close();
 
             // Sort array by date
             for ($i=0; $i<count($rows); $i++){ // Iterate through each row, i pointer

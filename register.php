@@ -41,6 +41,8 @@
         <h1>Register</h1>
         <!-- PHP -->
         <?php
+            require_once 'php/database.php';
+
             // Check if user is already logged in
             session_start();
             if (isset($_SESSION['email'])) {
@@ -52,9 +54,6 @@
                 session_destroy();
                 echo "<p>You must login to be able to post a blog.</p>";
             }
-
-            // Connect to local MySQL server
-            $db = new mysqli('localhost', 'root', '', 'ecs417');
 
             // Check if form has been submitted
             if (isset($_POST['email']) && isset($_POST['password']) && isset($_POST['confirmPassword'])) {
@@ -77,6 +76,9 @@
                 $password = htmlspecialchars($password);
                 $confirmPassword = htmlspecialchars($confirmPassword);
 
+                // Connect to local MySQL server
+                $db = connectToDatabase();
+                
                 // Check if email already exists
                 $result = $db->query(
                     "SELECT * FROM users WHERE email='$email'"
@@ -98,6 +100,9 @@
                     $result = $db->query(
                         "INSERT INTO users (email, password) VALUES ('$email', '$password')"
                     );
+
+                    // Close connection
+                    $db->close();
 
                     session_start(); // Start session
                     $_SESSION['email'] = $email;

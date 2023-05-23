@@ -41,6 +41,8 @@
         <h1>Login</h1>
         <!-- PHP -->
         <?php
+            require_once 'php/database.php';
+
             // Check if user is already logged in
             session_start();
             if (isset($_SESSION['email'])) {
@@ -51,9 +53,6 @@
                 session_destroy();
                 echo "<p>You must login to be able to post a blog.</p>";
             }
-
-            // Connect to local MySQL server
-            $db = new mysqli('localhost', 'root', '', 'ecs417');
 
             // Check if form has been submitted
             if (isset($_POST['email']) && isset($_POST['password'])) {
@@ -70,6 +69,9 @@
                 $email = htmlspecialchars($email);
                 $password = htmlspecialchars($password);
 
+                // Connect to local MySQL server
+                $db = connectToDatabase();
+                
                 // Check if email is in database
                 $result = $db->query(
                     "SELECT * FROM users WHERE email = '$email'"
@@ -84,12 +86,13 @@
                     if (password_verify($password, $hashedPassword)) {
                         session_start(); // Start session
                         $_SESSION['email'] = $email;
+
+                        $db->close(); // Close connection
                         header("Location: blog.php"); // Redirect to blog.php
                     } else {
                         // If email and password are not in database, display error message
                         echo "<p class='error'>Invalid email or password.</p>";
                     }
-
                 }
                 
                 else {

@@ -59,6 +59,8 @@
 </body>
 </html>
 <?php
+    require_once 'php/database.php';
+
     // Check if user is already logged in
     session_start();
     if (!isset($_SESSION['email'])) {
@@ -85,19 +87,20 @@
             $title = htmlspecialchars($title);
             $body = htmlspecialchars($body);
             
-            
             // Insert into database
-            $db = new mysqli('localhost', 'root', '', 'ecs417');
+            $db = connectToDatabase();
             $result = $db->query(
                 "INSERT INTO blog (date, title, body, email) VALUES (NOW(), '$title', '$body', '$email')"
             );
 
             // If insertion was successful, redirect to blog page
             if ($result) {
+                $db->close();
                 Header("Location: blog.php");
             }
             else {
                 echo "An error occurred, please try again.";
+                echo "If the issue persists, please contact me!";
             }
         }
     }
