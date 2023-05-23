@@ -78,11 +78,17 @@
 
                 // Connect to local MySQL server
                 $db = connectToDatabase();
+
+                //// Debugging
+                echo "<p>Log: Connected to database.</p>";
                 
                 // Check if email already exists
                 $result = $db->query(
                     "SELECT * FROM users WHERE email='$email'"
                 );
+
+                //// Debugging
+                echo "$result";
 
                 if (mysqli_num_rows($result) > 0) {
                     echo "<p class='error'>Account with same email already exists.</p>";
@@ -101,11 +107,18 @@
                         "INSERT INTO users (email, password) VALUES ('$email', '$password')"
                     );
 
+                    //// Debugging
+                    echo "<p>Log: Inserted into database.</p>";
+
                     // Close connection
                     $db->close();
 
                     session_start(); // Start session
                     $_SESSION['email'] = $email;
+
+                    //// Debugging
+                    echo "<p>Log: Redirecting...</p>";
+
                     header("Location: blog.php"); // Redirect to blog.php
                 } 
             }
