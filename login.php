@@ -88,7 +88,7 @@
                         $_SESSION['email'] = $email;
 
                         $db->close(); // Close connection
-                        header("Location: blog.php"); // Redirect to blog.php
+                        header("Location: https://rahatali.me/blog.php"); // Redirect to blog.php
                     } else {
                         // If email and password are not in database, display error message
                         echo "<p class='error'>Invalid email or password.</p>";
