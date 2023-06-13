@@ -87,6 +87,10 @@
                         session_start(); // Start session
                         $_SESSION['email'] = $email;
 
+                        // debug
+                        echo "<p> Hello, " . $_SESSION['email'] . "</p>";
+                        
+
                         $db->close(); // Close connection
                         header("Location: https://rahatali.me/blog.php"); // Redirect to blog.php
                     } else {
