@@ -46,7 +46,7 @@
             // Check if user is already logged in
             session_start();
             if (isset($_SESSION['email'])) {
-                header("Location: addblog.php"); // Redirect
+                header("Location: addBlog.php"); // Redirect
                 exit(); // Stop executing script
             }
             else {
