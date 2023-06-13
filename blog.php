@@ -51,6 +51,7 @@
                 echo '<a class="user_option" href="logout.php">Logout</a>';
                 echo '</div>';
             }
+            
             else {
                 echo '<div id="login_buttons">';
                 echo "<a class='user_option' href='register.php'>Register</a>";
