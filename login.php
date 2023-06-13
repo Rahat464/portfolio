@@ -65,12 +65,9 @@
                 $email = $_POST['email'];
                 $password = $_POST['password'];
 
-                // Prevent SQL injection
+                // Prevent SQL injection and XSS
                 $email = stripcslashes($email);
                 $password = stripcslashes($password);
-                $email = mysqli_real_escape_string($db, $email);
-                $password = mysqli_real_escape_string($db, $password);
-                // Prevent XSS
                 $email = htmlspecialchars($email);
                 $password = htmlspecialchars($password);
 
