@@ -45,17 +45,22 @@
 
             // Check if user is already logged in
             session_start();
+            echo "<script>console.log('Log: Session started');</script>";
             if (isset($_SESSION['email'])) {
+                echo "<script>console.log('Log: User already logged in, redirecting to addBlog.php');</script>";
                 header("Location: addBlog.php"); // Redirect
                 exit(); // Stop executing script
             }
             else {
                 session_destroy();
+                echo "<script>console.log('Log: User not logged in');</script>";
+                echo "<script>console.log('Log: Session destroyed');</script>";
                 echo "<p>You must login to be able to post a blog.</p>";
             }
 
             // Check if form has been submitted
             if (isset($_POST['email']) && isset($_POST['password'])) {
+                echo "<script>console.log('Log: Login form submitted');</script>";
 
                 $email = $_POST['email'];
                 $password = $_POST['password'];
@@ -71,7 +76,8 @@
 
                 // Connect to local MySQL server
                 $db = connectToDatabase();
-                
+                echo "<script>console.log('Log: Connecting to database');</script>";
+
                 // Check if email is in database
                 $result = $db->query(
                     "SELECT * FROM users WHERE email = '$email'"
@@ -79,29 +85,31 @@
 
                 // If email matches the database entry
                 if ($result->num_rows == 1) {
+                    echo "<script>console.log('Log: Email found in database');</script>";
 
                     // Get hashed password from database
                     $hashedPassword = $result->fetch_assoc()['password'];
 
                     if (password_verify($password, $hashedPassword)) {
                         session_start(); // Start session
+                        echo "<script>console.log('Log: Password matches, starting session');</script>";
+
                         $_SESSION['email'] = $email;
 
-                        // debug
-                        echo "<p> Hello, " . $_SESSION['email'] . "</p>";
-                        
-
                         $db->close(); // Close connection
+                        echo "<script>console.log('Log: Redirecting to blog.php');</script>";
                         header("Location: https://rahatali.me/blog.php"); // Redirect to blog.php
                     } else {
                         // If email and password are not in database, display error message
                         echo "<p class='error'>Invalid email or password.</p>";
+                        echo "<script>console.log('Log: Incorrect credential');</script>";
                     }
                 }
                 
                 else {
                     // If email and password are not in database, display error message
                     echo "<p class='error'>Invalid email or password.</p>";
+                    echo "<script>console.log('Log: Incorrect credential');</script>";
                 }
             }
         ?>
