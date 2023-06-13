@@ -47,7 +47,7 @@
             if (isset($_SESSION['email'])) {
                 echo "<p> Hello, " . $_SESSION['email'] . "</p>";
                 echo '<div id="login_buttons">';
-                echo "<a class='user_option' href='login.php'>Post a Blog</a>";
+                echo "<a class='user_option' href='addBlog.php'>Post a Blog</a>";
                 echo '<a class="user_option" href="php/logout.php">Logout</a>';
                 echo '</div>';
             }
